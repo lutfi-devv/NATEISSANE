@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATEISSANE - WhatsApp Unban Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        /* Main Container */
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 40px;
+            color: #4A00E0;
+            filter: drop-shadow(0 0 10px rgba(74, 0, 224, 0.5));
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #4A00E0, #8E2DE2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(142, 45, 226, 0.3);
+        }
+        
+        .version-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        /* Card Sections */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(142, 45, 226, 0.3);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #8E2DE2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            font-size: 20px;
+        }
+        
+        /* Input Group */
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #8E2DE2;
+            box-shadow: 0 0 0 3px rgba(142, 45, 226, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Buttons */
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4A00E0, #8E2DE2);
+            color: white;
+            grid-column: span 2;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(142, 45, 226, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Support Button */
+        .support-section {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .btn-support {
+            background: linear-gradient(45deg, #00b09b, #96c93d);
+            color: white;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-support:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 176, 155, 0.4);
+        }
+        
+        /* Status Display */
+        .status-container {
+            margin-top: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 100px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .status-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #8E2DE2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-log {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .log-success {
+            color: #4CAF50;
+        }
+        
+        .log-error {
+            color: #FF5252;
+        }
+        
+        .log-warning {
+            color: #FFC107;
+        }
+        
+        .log-info {
+            color: #2196F3;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+        }
+        
+        .social-link {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: #8E2DE2;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(142, 45, 226, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(142, 45, 226, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(142, 45, 226, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #4A00E0, #8E2DE2);
+            border-radius: 10px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .main-container {
+                padding: 20px;
+            }
+            
+            .btn-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-primary {
+                grid-column: span 1;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <i class="fas fa-shield-alt logo-icon"></i>
+                <div class="logo-text">NATEISSANE</div>
+            </div>
+            <div class="version-badge pulse">VERSION 1.0</div>
+            <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.7);">
+                Professional WhatsApp Unban Solution
+            </p>
+        </div>
+        
+        <!-- Input Card -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fas fa-phone-alt"></i>
+                TARGET PHONE NUMBER
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Enter WhatsApp Number</label>
+                <input type="text" class="input-field" id="phoneNumber" 
+                       placeholder="e.g. +6281234567890" maxlength="20">
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn btn-primary" id="unbanBtn">
+                    <i class="fas fa-unlock"></i>
+                    UNBAN NUMBER
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i>
+                    RESET
+                </button>
+                <button class="btn btn-secondary" id="infoBtn">
+                    <i class="fas fa-info-circle"></i>
+                    INFO
+                </button>
+            </div>
+        </div>
+        
+        <!-- Support Button -->
+        <div class="support-section">
+            <a href="https://saweria.co/LutfiDev" target="_blank" class="btn-support">
+                <i class="fas fa-heart"></i>
+                SUPPORT OUR WORK
+                <i class="fas fa-heart"></i>
+            </a>
+        </div>
+        
+        <!-- Status Display -->
+        <div class="status-container">
+            <div class="status-title">
+                <i class="fas fa-terminal"></i>
+                SYSTEM LOG
+            </div>
+            <div class="status-log" id="statusLog">
+                <div class="log-info">>>> System initialized successfully</div>
+                <div class="log-info">>>> NATEISSANE V1.0 ready</div>
+                <div class="log-info">>>> Waiting for user input...</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>© 2023 NATEISSANE - WhatsApp Unban Tool V1.0</p>
+            <p style="font-size: 12px; margin-top: 5px;">For educational purposes only</p>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize Particles Background
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#8E2DE2" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#4A00E0",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+        
+        // Add log function
+        function addLog(message, type = 'info') {
+            const log = document.getElementById('statusLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-${type}`;
+            logEntry.innerHTML = `[${timestamp}] >>> ${message}`;
+            log.appendChild(logEntry);
+            log.scrollTop = log.scrollHeight;
+            
+            // Play sound effect
+            playSound(type);
+        }
+        
+        // Sound effects
+        function playSound(type) {
+            const audio = new Audio();
+            audio.volume = 0.3;
+            
+            if (type === 'success') {
+                audio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==';
+            }
+        }
+        
+        // Email templates
+        const emailTemplates = {
+            unban: (number) => `Dear WhatsApp Support Team,
+
+I am writing to request assistance with unbanning my WhatsApp account. 
+My phone number is: ${number}
+
+I believe my account was banned by mistake as I have not violated any of WhatsApp's terms of service. 
+I use WhatsApp for important communication with family and work colleagues.
+
+Could you please review my account and consider reinstating it? 
+I would greatly appreciate your assistance.
+
+Thank you for your time and consideration.
+
+Best regards,
+[Your Name]`
+        };
+        
+        // Main unban function
+        function processUnban() {
+            const phoneNumber = document.getElementById('phoneNumber').value.trim();
+            
+            if (!phoneNumber) {
+                addLog('Please enter a valid phone number', 'error');
+                return;
+            }
+            
+            // Validate phone number format
+            const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                addLog('Invalid phone number format', 'error');
+                return;
+            }
+            
+            addLog(`Processing unban request for: ${phoneNumber}`, 'warning');
+            
+            // Simulate process steps
+            setTimeout(() => addLog('Checking number status...', 'info'), 500);
+            setTimeout(() => addLog('Preparing unban request...', 'info'), 1000);
+            setTimeout(() => addLog('Generating support email...', 'info'), 1500);
+            
+            setTimeout(() => {
+                // Open email client
+                const subject = `WhatsApp Unban Request - ${phoneNumber}`;
+                const body = emailTemplates.unban(phoneNumber);
+                const mailtoLink = `mailto:support@whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                window.location.href = mailtoLink;
+                addLog('Email client opened successfully', 'success');
+                addLog('Please send the prepared email to WhatsApp support', 'info');
+            }, 2000);
+        }
+        
+        // Reset function
+        function resetForm() {
+            document.getElementById('phoneNumber').value = '';
+            document.getElementById('statusLog').innerHTML = `
+                <div class="log-info">>>> System initialized successfully</div>
+                <div class="log-info">>>> LUTFIDEV V1.0 ready</div>
+                <div class="log-info">>>> Waiting for user input...</div>
+            `;
+            addLog('System reset complete', 'success');
+        }
+        
+        // Info function
+        function showInfo() {
+            document.getElementById('statusLog').innerHTML = '';
+            addLog('LUTFIDEV WHATSAPP UNBAN TOOL V1.0', 'info');
+            addLog('===============================', 'info');
+            addLog('Developed by: LUTFIDEV', 'info');
+            addLog('Version: 1.0.0', 'info');
+            addLog('', 'info');
+            addLog('FEATURES:', 'info');
+            addLog('• Professional unban request system', 'info');
+            addLog('• Automated email template generation', 'info');
+            addLog('• Real-time system logging', 'info');
+            addLog('• Modern UI with particle effects', 'info');
+            addLog('', 'info');
+            addLog('HOW TO USE:', 'info');
+            addLog('1. Enter target phone number', 'info');
+            addLog('2. Click UNBAN NUMBER button', 'info');
+            addLog('3. Email client will open automatically', 'info');
+            addLog('4. Send the prepared email to WhatsApp', 'info');
+            addLog('', 'info');
+            addLog('NOTE: This tool is for educational purposes', 'info');
+        }
+        
+        // Event Listeners
+        document.getElementById('unbanBtn').addEventListener('click', processUnban);
+        document.getElementById('resetBtn').addEventListener('click', resetForm);
+        document.getElementById('infoBtn').addEventListener('click', showInfo);
+        
+        // Enter key support
+        document.getElementById('phoneNumber').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') processUnban();
+        });
+        
+        // Initial log
+        window.addEventListener('load', () => {
+            setTimeout(() => addLog('Particle system initialized', 'success'), 1000);
+            setTimeout(() => addLog('All systems ready', 'success'), 1500);
+        });
+    </script>
+</body>
+</html>
