@@ -543,7 +543,7 @@ Best regards,
                 // Open email client
                 const subject = `WhatsApp Unban Request - ${phoneNumber}`;
                 const body = emailTemplates.unban(phoneNumber);
-                const mailtoLink = `mailto:support@whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const mailtoLink = `mailto:support@support.whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 
                 window.location.href = mailtoLink;
                 addLog('Email client opened successfully', 'success');
